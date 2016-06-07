@@ -16,7 +16,7 @@ gem 'devise'
 gem 'faker'
 gem 'pg', '~> 0.15'
 gem 'pundit'
-gem 'haml'
+gem 'haml-rails'
 gem 'fog'
 gem 'mini_magick'
 gem 'carrierwave'
@@ -32,7 +32,6 @@ group :development do
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'figaro', '1.0'
-  gem 'haml-rails'
 end
 
 group :development, :test do

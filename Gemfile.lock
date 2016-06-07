@@ -389,7 +389,6 @@ DEPENDENCIES
   faker
   figaro (= 1.0)
   fog
-  haml
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
