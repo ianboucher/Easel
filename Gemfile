@@ -17,6 +17,9 @@ gem 'faker'
 gem 'pg', '~> 0.15'
 gem 'pundit'
 gem 'haml'
+gem 'fog'
+gem 'mini_magick'
+gem 'carrierwave'
 
 group :production do
   gem 'rails_12factor'
