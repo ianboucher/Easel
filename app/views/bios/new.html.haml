@@ -20,9 +20,9 @@
         = f.label :info
         = f.text_area :info, rows: 12, class: 'form-control', placeholder: "Write anything you like here"
 
-      = form_group_tag(@bio.errors[:image]) do
-        = f.label :image
-        = f.file_field :image
+        = f.fields_for :image do |img|
+          = img.label :image
+          = img.file_field :images, multiple: true, name: "bio[images][]"
         %br/
 
         = f.submit "Save", class: 'btn btn-success'

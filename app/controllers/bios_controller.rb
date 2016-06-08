@@ -12,10 +12,13 @@ class BiosController < ApplicationController
   end
 
   def create
-    # binding.pry
     # @bio = current_user.bio.new(bio_params) # why can't I do this? - undefined method 'new for NilClass'
     @bio = Bio.new(bio_params)
-    @bio.user_id = current_user.id
+    @bio.user = current_user
+    params[:bio][:images].each do |img|
+      @bio.images.new(filename: img)
+    end
+    binding.pry
     if @bio.save!
       flash[:notice] = "Bio saved"
       redirect_to new_user_bio_path

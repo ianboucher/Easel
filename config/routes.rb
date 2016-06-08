@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :bios
   end
 
+  resources :images, only: [:create, :destroy]
+
   authenticated :user do
     root 'welcome#index', as: :authenticated_root # change root for signed-in users
   end

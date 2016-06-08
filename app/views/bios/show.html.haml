@@ -2,4 +2,5 @@
   = @bio.name
   %br/
   .img-responsive
-    = image_tag(@bio.image)
+    = @bio.images.each do |img|
+      = image_tag(img)
