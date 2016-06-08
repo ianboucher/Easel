@@ -1,0 +1,28 @@
+%h1 Create your new Bio page
+
+.row
+  .col-md-8
+    = form_for [current_user, @bio], :html => {:multipart => true} do |f|
+
+      = form_group_tag(@bio.errors[:name]) do
+        = f.label :name
+        = f.text_field :name, class: 'form-control', placeholder: "Enter your name here"
+
+      = form_group_tag(@bio.errors[:description]) do
+        = f.label :description
+        = f.text_field :description, class: 'form-control', placeholder: "Enter a 1-line description"
+
+      = form_group_tag(@bio.errors[:statement]) do
+        = f.label :statement
+        = f.text_area :statement, rows: 8, class: 'form-control', placeholder: "Enter your Artist's Statement here"
+
+      = form_group_tag(@bio.errors[:info]) do
+        = f.label :info
+        = f.text_area :info, rows: 12, class: 'form-control', placeholder: "Write anything you like here"
+
+      = form_group_tag(@bio.errors[:image]) do
+        = f.label :image
+        = f.file_field :image
+        %br/
+
+        = f.submit "Save", class: 'btn btn-success'

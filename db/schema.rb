@@ -11,10 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602140241) do
+ActiveRecord::Schema.define(version: 20160607210328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bios", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "statement"
+    t.text     "info"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "bios", ["user_id"], name: "index_bios_on_user_id", using: :btree
+
+  create_table "images", force: :cascade do |t|
+    t.string   "filename"
+    t.string   "imageable_type"
+    t.integer  "imageable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
+  add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "", null: false
@@ -43,4 +67,6 @@ ActiveRecord::Schema.define(version: 20160602140241) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "bios", "users"
+  add_foreign_key "images", "users"
 end
