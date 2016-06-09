@@ -1,7 +1,7 @@
 class CreateImages < ActiveRecord::Migration
   def change
     create_table :images do |t|
-      t.string     :filename
+      t.string     :file
       t.string     :imageable_type
       t.integer    :imageable_id
       t.references :user, index: true, foreign_key: true

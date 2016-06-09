@@ -1,6 +1,11 @@
-%h1
-  = @bio.name
-  %br/
+
+%br/
+%center
   .img-responsive
-    = @bio.images.each do |img|
-      = image_tag(img)
+    - @bio.images.each do |img|
+      = image_tag(img.file)
+%h1= @bio.name
+%h3= @bio.description
+%p= @bio.statement
+%p= @bio.info
+= link_to "Edit your Bio", edit_user_bio_path, class: 'btn btn-primary'
