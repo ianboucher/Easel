@@ -1,0 +1,37 @@
+%h1 Create a new listing for your Artwork
+
+.row
+  .col-md-8
+    = form_for @artwork, :html => {:multipart => true} do |f|
+
+      = form_group_tag(@artwork.errors[:title]) do
+        = f.label :title
+        = f.text_field :title, class: 'form-control',
+          placeholder: "Enter the title of your piece here"
+
+      = form_group_tag(@artwork.errors[:category]) do
+        = f.label :category
+        = f.text_field :category, class: 'form-control',
+          placeholder: "Enter a category e.g. landscapes"
+
+      = form_group_tag(@artwork.errors[:description]) do
+        = f.label :description
+        = f.text_area :description, rows: 4, class: 'form-control',
+          placeholder: "Enter a brief description of you piece here"
+
+      = form_group_tag(@artwork.errors[:price]) do
+        = f.label :price
+        = f.number_field :price, class: 'form-control form-narrow',
+          placeholder: "Enter a price in USD here"
+
+      = form_group_tag(@artwork.errors[:discount]) do
+        = f.label :discount
+        = f.number_field :discount, class: 'form-control form-narrow',
+          placeholder: "Add an optional discount % here"
+        %br/
+        = f.fields_for :image do |img|
+          = img.label :images, class: 'btn btn-primary'
+          = img.file_field :images, multiple: true, name: "images[]", style: "display: none"
+        %br/
+        %br/
+        = f.submit "Save", class: 'btn btn-success'

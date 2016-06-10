@@ -1,2 +1,10 @@
-%h1 Bios#index
-%p Find me in app/views/bios/index.html.haml
+%h1 Discover Artists on Easel
+.row
+  .col-md-8
+    - @bios.each do |bio|
+      .media
+        = image_tag bio.images.first.file.thumb
+        .media-body
+          .media-heading
+            %h4= link_to bio.name, bio_path(bio)
+            %h5= bio.description

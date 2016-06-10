@@ -2,7 +2,7 @@
 
 .row
   .col-md-8
-    = form_for [current_user, @bio], :html => {:multipart => true} do |f|
+    = form_for @bio, :html => {:multipart => true} do |f|
 
       = form_group_tag(@bio.errors[:name]) do
         = f.label :name
@@ -22,7 +22,7 @@
         %br/
         = f.fields_for :image do |img|
           = img.label :images, class: 'btn btn-primary'
-          = img.file_field :images, multiple: true, name: "bio[images][]", style: "display: none"
+          = img.file_field :images, multiple: true, name: ":images[]", style: "display: none"
         %br/
         %br/
         = f.submit "Save", class: 'btn btn-success'

@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
 
   enum role: [:collector, :artist, :admin]
 
-  has_one :bio
+  has_one  :bio
+  has_many :artworks
 end

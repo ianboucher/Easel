@@ -1,0 +1,13 @@
+
+%br/
+%center
+  .img-responsive
+    - @artwork.images.each do |img|
+      = image_tag(img.file.medium)
+%h1= @artwork.title
+%h3= @artwork.category
+%p= @artwork.description
+%p= @artwork.price
+= link_to "Edit your Listing", edit_artwork_path, class: 'btn btn-primary'
+
+= link_to "Make a new Listing", new_artwork_path, class: 'btn btn-primary'

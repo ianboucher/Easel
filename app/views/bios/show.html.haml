@@ -3,9 +3,9 @@
 %center
   .img-responsive
     - @bio.images.each do |img|
-      = image_tag(img.file)
+      = image_tag(img.file.square)
 %h1= @bio.name
 %h3= @bio.description
 %p= @bio.statement
 %p= @bio.info
-= link_to "Edit your Bio", edit_user_bio_path, class: 'btn btn-primary'
+= link_to "Edit your Bio", edit_bio_path, class: 'btn btn-primary'

@@ -1,0 +1,8 @@
+%br/
+%center
+  - @artworks.in_groups_of(3, false).each do |group|
+    .row
+      - group.each do |artwork|
+        .col-md-4
+          = link_to image_tag(artwork.images.first.file.square, class: 'image-responsive'),
+            artwork_path(artwork)
