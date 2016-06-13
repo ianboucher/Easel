@@ -13,9 +13,9 @@ class ArtworksController < ApplicationController
   end
 
   def create
-    # binding.pry
+    binding.pry
     @artwork = current_user.artworks.new(artwork_params)
-    params[:images].each { |img| @artwork.images.new(file: img, user_id: current_user.id) }
+      params[:images].each { |img| @artwork.images.new(file: img, user_id: current_user.id) }
 
     if @artwork.save!
       flash[:notice] = "Artwork saved successfully"

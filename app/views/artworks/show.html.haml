@@ -13,18 +13,3 @@
 = link_to "Make a new Listing", new_artwork_path, class: 'btn btn-primary'
 
 = link_to "Buy it!", new_purchase_path(id: @artwork.id), class: 'btn btn-primary'
-
--# = form_tag purchases_path(id: @artwork.id) do
--#   %article
--#     - if flash[:error].present?
--#       #error_explanation
--#         %p= flash[:error]
--#
--#   %script.stripe-button{ :src => "https://checkout.stripe.com/checkout.js",
--#   "data-amount" => "#{@artwork.price}",
--#   "data-description" => "Purchase artwork: #{@artwork.title}",
--#   "data-key" => "#{ Rails.configuration.stripe[:publishable_key] }",
--#   "data-currency" => "gbp",
--#   "data-image" => "/img/documentation/checkout/marketplace.png",
--#   "data-name" => "Easel",
--#   "data-locale" => "auto" }

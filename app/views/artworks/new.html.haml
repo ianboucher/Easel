@@ -1,3 +1,4 @@
+= cloudinary_js_config
 %h1 Create a new listing for your Artwork
 
 .row
@@ -31,7 +32,7 @@
         %br/
         = f.fields_for :image do |img|
           = img.label :images, class: 'btn btn-primary'
-          = img.file_field :images, multiple: true, name: "images[]", style: "display: none"
+          = img.file_field :images, multipart: true, name: "images[]"
         %br/
         %br/
         = f.submit "Save", class: 'btn btn-success'

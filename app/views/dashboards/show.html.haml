@@ -18,7 +18,8 @@
       class: 'btn btn-primary'
 
   =link_to "List an Artwork", new_artwork_path(current_user), class: 'btn btn-default'
-.col-md-8
+
+-# .col-md-8
   - @dashboard.listed_artworks.each do |artwork|
     .row
       %br/

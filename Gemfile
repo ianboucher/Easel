@@ -17,9 +17,9 @@ gem 'faker'
 gem 'pg', '~> 0.15'
 gem 'pundit'
 gem 'haml-rails'
-gem 'fog'
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'cloudinary'
 gem 'stripe'
 
 group :production do

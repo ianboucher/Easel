@@ -11,5 +11,4 @@ class Dashboard
   def purchased_artworks
     @user.purchases.artwork
   end
-
 end
