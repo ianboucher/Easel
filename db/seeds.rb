@@ -23,4 +23,23 @@ confirmed_at: Time.now.utc
 
 users = User.all
 
+100.times do
+  Artwork.create!(
+  user: users.sample,
+  title: Faker::Book.title,
+  category: Faker::Book.genre,
+  description: Faker::Lorem.words,
+  price: Faker::Number.number(3),
+  discount: nil
+  )
+end
+
+artworks = Artwork.all
+
+artworks.each do |artwork|
+  artwork.images.create!(file: File.open(File.join(Rails.root, "test#{rand(1..10)}.jpg")),
+   user_id: artwork.user_id)
+end
+
 p "#{users.count} users created"
+p "#{artworks.count} artworks created"

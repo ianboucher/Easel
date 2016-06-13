@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
 
   has_one  :bio
   has_many :artworks
+  has_many :purchases
 end

@@ -1,0 +1,14 @@
+= form_tag purchases_path(id: @artwork.id) do
+  %article
+    - if flash[:error].present?
+      #error_explanation
+        %p= flash[:error]
+
+  %script.stripe-button{ :src => "https://checkout.stripe.com/checkout.js",
+  "data-amount" => "#{@stripe_btn_data[:amount]}",
+  "data-description" => "#{@stripe_btn_data[:destcription]}",
+  "data-key" => "#{@stripe_btn_data[:key]}",
+  "data-currency" => "gbp",
+  "data-image" => "/img/documentation/checkout/marketplace.png",
+  "data-name" => "Easel",
+  "data-locale" => "auto" }

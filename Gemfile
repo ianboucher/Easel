@@ -20,6 +20,7 @@ gem 'haml-rails'
 gem 'fog'
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'stripe'
 
 group :production do
   gem 'rails_12factor'

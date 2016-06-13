@@ -8,10 +8,14 @@ Rails.application.routes.draw do
 
   resources :artworks
 
+  resources :purchases, only: [:new, :create]
+
   resources :images, only: [:create, :destroy]
 
+  resources :dashboards, only: :show
+
   authenticated :user do
-    root 'users#show', as: :authenticated_root # change root for signed-in users
+    root 'dashboards#show', as: :authenticated_root # change root for signed-in users
   end
 
   get 'welcome/about'

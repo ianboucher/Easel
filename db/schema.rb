@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609111448) do
+ActiveRecord::Schema.define(version: 20160611203523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(version: 20160609111448) do
   add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
+  create_table "purchases", force: :cascade do |t|
+    t.string   "charge_id"
+    t.integer  "amount"
+    t.integer  "user_id"
+    t.integer  "artwork_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "purchases", ["artwork_id"], name: "index_purchases_on_artwork_id", using: :btree
+  add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "", null: false
     t.string   "email",                  default: "", null: false
@@ -83,4 +95,6 @@ ActiveRecord::Schema.define(version: 20160609111448) do
   add_foreign_key "artworks", "users"
   add_foreign_key "bios", "users"
   add_foreign_key "images", "users"
+  add_foreign_key "purchases", "artworks"
+  add_foreign_key "purchases", "users"
 end

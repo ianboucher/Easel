@@ -1,10 +1,12 @@
 %h1 Discover Artists on Easel
-.row
-  .col-md-8
-    - @bios.each do |bio|
-      .media
-        = image_tag bio.images.first.file.thumb
-        .media-body
-          .media-heading
-            %h4= link_to bio.name, bio_path(bio)
-            %h5= bio.description
+%br/
+- @bios.each do |bio|
+  .row
+    .col-md-2
+      = image_tag bio.images.first.file.thumb
+    .media-heading
+      .col-md-2
+        %h4= link_to bio.name, bio_path(bio)
+      .col-md-4
+        %h5= bio.description
+  %br/

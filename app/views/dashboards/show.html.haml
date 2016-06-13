@@ -1,0 +1,26 @@
+%br/
+.media-left
+  = gravatar_url(current_user, 128)
+.media-body
+  .pull-right
+    = link_to "Edit Your Details", edit_user_registration_path, class: 'btn btn-primary'
+  %h2.media-heading= current_user.username
+  %small
+    Member since #{ current_user.created_at.strftime("%B %d, %Y") }
+%br/
+.media-heading
+  - if current_user.bio.present?
+    =link_to "Edit your Bio", edit_bio_path(current_user, current_user.bio),
+      class: 'btn btn-primary'
+  - else
+    %p Just getting started? Create your bio and let collectors find out about you and your work.
+    =link_to "Create your Bio", new_bio_path(current_user),
+      class: 'btn btn-primary'
+
+  =link_to "List an Artwork", new_artwork_path(current_user), class: 'btn btn-default'
+.col-md-8
+  - @dashboard.listed_artworks.each do |artwork|
+    .row
+      %br/
+      =link_to image_tag(artwork.images.first.file.thumb, class: 'image-responsive'), artwork_path(artwork)
+      =artwork.title
