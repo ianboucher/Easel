@@ -2,7 +2,9 @@
 
 .row
   .col-md-8
-    = form_for @artwork, :html => {:multipart => true} do |f|
+    = form_for @artwork, html: { class: 'directUpload',
+      data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url,
+      'host' => URI.parse(@s3_direct_post.url).host }, multipart: true } do |f|
 
       = form_group_tag(@artwork.errors[:title]) do
         = f.label :title
@@ -31,7 +33,6 @@
         %br/
         = f.fields_for :image do |img|
           = img.label :images, class: 'btn btn-primary'
-          = img.file_field :images, multiple: true, name: "images[]", style: "display: none"
-        %br/
+          = img.file_field :image, name: "images[]", multiple: true, class: 'btn btn-default'
         %br/
         = f.submit "Save", class: 'btn btn-success'

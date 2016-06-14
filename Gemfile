@@ -20,6 +20,8 @@ gem 'haml-rails'
 gem 'fog'
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'aws-sdk'
+gem 'jquery-fileupload-rails'
 gem 'stripe'
 
 group :production do

@@ -40,6 +40,12 @@ GEM
     arel (6.0.3)
     autoprefixer-rails (6.3.6.1)
       execjs
+    aws-sdk (2.3.13)
+      aws-sdk-resources (= 2.3.13)
+    aws-sdk-core (2.3.13)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.3.13)
+      aws-sdk-core (= 2.3.13)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -233,6 +239,12 @@ GEM
     jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jmespath (1.2.4)
+      json_pure (>= 1.8.1)
+    jquery-fileupload-rails (0.4.6)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      sass (>= 3.2)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -241,6 +253,7 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.3)
+    json_pure (1.8.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -383,6 +396,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk
   bcrypt
   bootstrap-sass
   byebug
@@ -395,6 +409,7 @@ DEPENDENCIES
   fog
   haml-rails
   jbuilder (~> 2.0)
+  jquery-fileupload-rails
   jquery-rails
   jquery-turbolinks
   mini_magick

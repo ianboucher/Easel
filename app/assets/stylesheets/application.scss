@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery.fileupload
+ *= require jquery.fileupload-ui
  */
 
  @import "bootstrap";
@@ -42,3 +44,15 @@
  .form-narrow {
    max-width: 30em;
  }
+
+ .progress {
+  max-width: 600px;
+  margin:    0.2em 0 0.2em 0;
+}
+
+.progress .bar {
+  height:  3em;
+  padding-left: 0.2em;
+  color:   white;
+  display: none;
+}

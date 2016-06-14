@@ -1,5 +1,7 @@
 class ArtworksController < ApplicationController
 
+  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
+
   def index
     @artworks = Artwork.all
   end
@@ -15,7 +17,8 @@ class ArtworksController < ApplicationController
   def create
     # binding.pry
     @artwork = current_user.artworks.new(artwork_params)
-    params[:images].each { |img| @artwork.images.new(file: img, user_id: current_user.id) }
+    # @artwork.images.new(file: params[:image_url], user_id: current_user.id)
+    params[:image_url].each { |url| @artwork.images.new(file: url, user_id: current_user.id) }
 
     if @artwork.save!
       flash[:notice] = "Artwork saved successfully"
@@ -32,7 +35,7 @@ class ArtworksController < ApplicationController
 
   def update
     @artwork = Artwork.find(params[:id])
-    params[:images].each { |img| @artwork.images.new(file: img, user_id: current_user.id) } if params.has_key?('images')
+    params[:image_url].each { |url| @artwork.images.new(file: url, user_id: current_user.id) } if params.has_key?('image_url')
 
     if @artwork.update(artwork_params)
       flash[:notice] = "Artwork saved successfully"
@@ -47,5 +50,10 @@ class ArtworksController < ApplicationController
 
   def artwork_params
     params.require(:artwork).permit(:title, :category, :description, :price, :discount)
+  end
+
+  def set_s3_direct_post
+    @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}",
+      success_action_status: '201', acl: 'public-read')
   end
 end
