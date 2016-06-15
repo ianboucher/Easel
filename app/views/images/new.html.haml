@@ -1,7 +1,14 @@
 -# %input#fileupload{"data-url" => "server/php/", :multiple => "", :name => "files[]", :type => "file"}
 
-%input#fileupload{ data:{ 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url,
-'host' => URI.parse(@s3_direct_post.url).host}, :multiple => "", :name => "files[]", :type => "file"}
+-# %input#fileupload{ data:{ 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url,
+-# 'host' => URI.parse(@s3_direct_post.url).host}, :multiple => "", :name => "files[]", :type => "file"}
 
 -# data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url,
 -# 'host' => URI.parse(@s3_direct_post.url).host }
+
+= form_for @image, html: { data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url,
+  'host' => URI.parse(@s3_direct_post.url).host }, multipart: true } do |f|
+
+  = f.file_field :image, name: "images[]", id: 'fileupload'
+
+%input#uploadbutton.btn.btn-primary{:type => "button", :value => "Upload"}

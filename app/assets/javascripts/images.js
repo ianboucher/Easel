@@ -2,34 +2,43 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
-$(function () {
-  $('#fileupload').find("input:file").each(function(i, elem) {
-    var fileInput    = $(elem);
-    console.log(fileInput);
-    var form         = $(fileInput.parents('form:first'));
-    var submitButton = form.find('input[type="submit"]');
-    var progressBar  = $("<div class='bar'></div>");
-    var barContainer = $("<div class='progress'></div>").append(progressBar);
-    fileInput.after(barContainer);
-
-    fileInput.fileupload({
-        fileInput:        fileInput,
-        url:              form.data('url'), //read from AWS config via form attribute
-        type:             'POST',
-        autoUpload:       true, // begin upload when user selects file
-        formData:         form.data('form-data'), //read from AWS config via form attribute
-        paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
-        dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
-        replaceFileInput: false,
-        done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
-                $('<p/>').text(file.name).appendTo(document.body);
-            });
-        }
-    });
-});
-});
-
-// data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url,
-// 'host' => URI.parse(@s3_direct_post.url).host }
+// $(function () {
+//     var fileInput = $('#fileupload');
+//     var form = $(fileInput.parents('form:first'));
+//     console.log(fileInput);
+//     // console.log(form.data);
+//     console.log(form.data('url'));
+//     console.log(form.data('form-data'));
+//     fileInput.fileupload({
+//         fileInput:        fileInput,
+//         url:              form.data('url'), //read from AWS config via form attribute
+//         type:             'POST',
+//         autoUpload:       true, // begin upload when user selects file
+//         formData:         form.data('form-data'), //read from AWS config via form attribute
+//         paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
+//         dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
+//         replaceFileInput: false,
+//
+//         submit: function (e, data) {
+//           console.log('in submit')
+//         },
+//
+//         start: function (e){
+//           console.log('in start')
+//         },
+//
+//         add: function (e, data) {
+//           console.log('in add')
+//           $('#uploadbutton').on('click', function(){
+//             data.submit();
+//           });
+//         },
+//
+//         done: function (e, data) {
+//           console.log(data)
+//             $.each(data.result.files, function (index, file) {
+//                 $('<p/>').text(file.name).appendTo(document.body);
+//             });
+//         }
+//     });
+// });

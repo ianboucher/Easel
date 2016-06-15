@@ -3,9 +3,11 @@ class ImagesController < ApplicationController
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def new
+    @image = Image.new
   end
 
   def create
+    @image = Image.new
   end
 
 
