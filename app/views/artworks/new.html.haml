@@ -31,8 +31,8 @@
         = f.number_field :discount, class: 'form-control form-narrow',
           placeholder: "Add an optional discount % here"
         %br/
-        = f.fields_for :image do |img|
-          = img.label :images, class: 'btn btn-primary'
-          = img.file_field :image, name: "images[]", multiple: true, class: 'btn btn-default'
+        = fields_for :image do |img|
+          = img.file_field :image, name: "images[]", id: 'fileupload'
+
         %br/
-        = f.submit "Save", class: 'btn btn-success'
+        = f.submit "Save", class: 'btn btn-success', type: 'button'

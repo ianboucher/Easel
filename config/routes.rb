@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :purchases, only: [:new, :create]
 
-  resources :images, only: [:create, :destroy]
+  resources :images, only: [:new, :create, :destroy]
 
   resources :dashboards, only: :show
 

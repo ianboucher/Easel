@@ -11,6 +11,7 @@ $(function() {
     var progressBar  = $("<div class='bar'></div>");
     var barContainer = $("<div class='progress'></div>").append(progressBar);
     fileInput.after(barContainer);
+
     fileInput.fileupload({
       fileInput:        fileInput,
       url:              form.data('url'), //read from AWS config via form attribute
