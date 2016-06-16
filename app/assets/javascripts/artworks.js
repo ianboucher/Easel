@@ -2,7 +2,8 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(function() {
+$(document).ready(function() {
+  $('#target').cropper.start; // initialize cropper
   $('.directUpload').find("input:file").each(function(i, elem) {
     var fileInput    = $(elem);
     // console.log(fileInput);
@@ -35,11 +36,15 @@ $(function() {
         if (data.files && data.files[0]) {
           var reader = new FileReader();
           reader.onload = function(e) {
-            console.log(e)
               $('#target').attr('src', e.target.result);
-          }
-        }
-        reader.readAsDataURL(data.files[0]);
+              $('#target').cropper('src', e.target.result);
+              })
+              console.log(e.width)
+          };
+          reader.readAsDataURL(data.files[0]);
+        };
+        console.log(reader)
+
         $('#uploadart').on('click', function(){
           data.submit();
         });
@@ -49,6 +54,7 @@ $(function() {
         var progress = parseInt(data.loaded / data.total * 100, 10);
         progressBar.css('width', progress + '%')
       },
+
       start: function (e) {
         submitButton.prop('disabled', true); //disable submit button while image is loading
 
@@ -58,6 +64,7 @@ $(function() {
           css('width', '0%').
           text("Loading...");
       },
+
       done: function(e, data) {
         submitButton.prop('disabled', false);
         progressBar.text("Uploading done");
@@ -70,6 +77,7 @@ $(function() {
         var input = $("<input />", { type:'hidden', name: 'image_url[]', value: url })
         form.append(input);
       },
+
       fail: function(e, data) {
         submitButton.prop('disabled', false);
 
