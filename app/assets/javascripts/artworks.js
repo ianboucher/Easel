@@ -3,7 +3,6 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(function() {
-  $('#target').cropper.start; // initialize cropper
   $('.directUpload').find("input:file").each(function(i, elem) {
     var fileInput    = $(elem);
     // console.log(fileInput);
@@ -32,20 +31,24 @@ $(document).ready(function() {
       imageCrop: true, // Force cropped images
 
       add: function (e, data) {
-        console.log(data.files)
+        console.log(data)
         if (data.files && data.files[0]) {
           var reader = new FileReader();
           reader.onload = function(e) {
-              $('#target').attr('src', e.target.result);
-              $('#target').cropper('src', e.target.result);
-              })
-              console.log(e.width)
-          };
-          reader.readAsDataURL(data.files[0]);
+              $('#target').attr('src', e.target.result); // insert preview image
+              $('#target').cropper() // initialize cropper
+            };
+          reader.readAsDataURL(data.files[0]); // triggers code above (?)
         };
-        console.log(reader)
 
         $('#uploadart').on('click', function(){
+          $('#target').cropper('getCroppedCanvas').toBlob(function (blob){
+            var formData = new FormData();
+            formData.append('croppedImage', blob);
+            console.log(formData)
+            console.log(blob)
+          })
+          console.log(data)
           data.submit();
         });
       },
