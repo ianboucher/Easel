@@ -5,48 +5,36 @@
 $(document).ready(function() {
   $('.directUpload').find("input:file").each(function(i, elem) {
     var fileInput    = $(elem);
-    // console.log(fileInput);
     var form         = $(fileInput.parents('form:first'));
-    // console.log(form)
-    // console.log(form.data)
-    // console.log(form.data('url'))
     var submitButton = form.find('input[type="submit"]');
     var progressBar  = $("<div class='bar'></div>");
     var barContainer = $("<div class='progress'></div>").append(progressBar);
     fileInput.after(barContainer);
-
     fileInput.fileupload({
       fileInput:        fileInput,
-      url:              form.data('url'), //read from AWS config via form attribute
+      url:              form.data('url'), //read AWS config via form attributes
       type:             'POST',
-      autoUpload:       false, // begin upload when user selects file
-      formData:         form.data('form-data'), //read from AWS config via form attribute
+      autoUpload:       false, // prevent upload start on file selection
+      formData:         form.data('form-data'), //read AWS config via form attributes
       paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
       dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
       replaceFileInput: false,
-      disableImageResize: /Android(?!.*Chrome)|Opera/
-        .test(window.navigator && navigator.userAgent),
-      imageMaxWidth: 400,
-      imageMaxHeight: 400,
-      imageCrop: true, // Force cropped images
 
       add: function (e, data) {
-        console.log(data)
         if (data.files && data.files[0]) {
           var reader = new FileReader();
           reader.onload = function(e) {
               $('#target').attr('src', e.target.result); // insert preview image
-              $('#target').cropper() // initialize cropper
+              $('#target').cropper() // initialize cropper on preview image
             };
+            console.log(e)
           reader.readAsDataURL(data.files[0]); // triggers code above (?)
         };
 
         $('#uploadart').on('click', function(){
           $('#target').cropper('getCroppedCanvas').toBlob(function (blob){
-            var formData = new FormData();
-            formData.append('croppedImage', blob);
-            console.log(formData)
-            console.log(blob)
+              var file = new File([blob], 'cropped.png')
+              data.file[0]
           })
           console.log(data)
           data.submit();
