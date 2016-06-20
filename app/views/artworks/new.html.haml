@@ -37,7 +37,9 @@
           %input#uploadart.btn.btn-primary{:type => "button", :value => "Upload"}
 
           .div
-            %img#target 
+            %img#target
+          .div
+            %canvas#cropped_img{:height => "500", :style => "border:1px solid #d3d3d3;", :width => "750"}
 
         %br/
         = f.submit "Save", class: 'btn btn-success'
