@@ -6,11 +6,15 @@
       = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
       = javascript_include_tag 'application', 'data-turbolinks-track' => true
       = csrf_meta_tags
-      -# = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/file-uploader/5.10.0/fine-uploader.min.js'
-      = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.js'
+
+      = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/file-uploader/5.10.0/s3.fine-uploader/s3.fine-uploader.js'
       = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.js'
+
       = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.css'
-      = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.css'
+      = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/file-uploader/5.10.0/s3.fine-uploader/fine-uploader-gallery.css'
+      = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/file-uploader/5.10.0/s3.fine-uploader/fine-uploader.css'
+      = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/file-uploader/5.10.0/s3.fine-uploader/fine-uploader-new.css'
+
   %body
     .container
       .flash
@@ -37,4 +41,9 @@
         - else
           %li.pull-right= link_to "Sign Up", new_user_registration_path
           %li.pull-right= link_to "Sign In", new_user_session_path
+
+          -# %link{:href => "client/fine-uploader-new.css", :rel => "stylesheet"}
+          -#   %script{:src => "client/fine-uploader.js"}
+          -#     %script#qq-template{:type => "text/template"}
+
       = yield

@@ -26,7 +26,23 @@ $(document).ready(function() {
     // })
 
   })
-  var uploader = new qq.s3.FineUploader({})
+  var uploader = new qq.s3.FineUploader({
+    debug: true,
+    element: document.getElementById('fine-uploader'),
+    request: {
+        endpoint: 'http://s3easel.s3.amazonaws.com',
+        accessKey: 'AKIAIJYNQYAR2LMBMWBA'
+    },
+    signature: {
+        endpoint: '/s3/signature'
+    },
+    uploadSuccess: {
+        endpoint: '/s3/success'
+    },
+    iframeSupport: {
+        localBlankPagePath: '/success.html'
+    }
+  })
 });
 //   $('.directUpload').find("input:file").each(function(i, elem) {
 //     var fileInput    = $(elem);
