@@ -1,15 +1,35 @@
-// # Place all the behaviors and hooks related to the matching controller here.
-// # All this logic will automatically be available in application.js.
-// # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(function() {
-  $('.directUpload').find("input:file").each(function(i, elem) {
-    var fileInput    = $(elem);
+
+  $('#select_file').on('change', function(e){
+    if (e.target.files && e.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+          $('#preview').attr('src', e.target.result); // insert preview image
+          $('#preview').cropper() // initialize cropper on preview image
+        };
+      reader.readAsDataURL(e.target.files[0]); // triggers code above
+    };
+  });
+
+  $('#crop_btn').on('click', function(){
+    $('#preview').cropper('getCroppedCanvas').toBlob(function (blob){
+      var fileInput = $('#select_file')
+      var croppedFile = new File([blob], fileInput[0].files[0].name);
+      $('#uploadbutton').on('click', function(){
+        $('#file_upload').fileupload('send', {files: [croppedFile]});
+      });
+    });
+  });
+
+  $(function () {
+    var fileInput    = $('#file_upload');
     var form         = $(fileInput.parents('form:first'));
     var submitButton = form.find('input[type="submit"]');
     var progressBar  = $("<div class='bar'></div>");
     var barContainer = $("<div class='progress'></div>").append(progressBar);
     fileInput.after(barContainer);
+
     fileInput.fileupload({
       fileInput:        fileInput,
       url:              form.data('url'), //read AWS config via form attributes
@@ -19,27 +39,6 @@ $(document).ready(function() {
       paramName:        'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
       dataType:         'XML',  // S3 returns XML if success_action_status is set to 201
       replaceFileInput: false,
-
-      add: function (e, data) {
-        if (data.files && data.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-              $('#target').attr('src', e.target.result); // insert preview image
-              $('#target').cropper() // initialize cropper on preview image
-            };
-            console.log(e)
-          reader.readAsDataURL(data.files[0]); // triggers code above (?)
-        };
-
-        $('#uploadart').on('click', function(){
-          $('#target').cropper('getCroppedCanvas').toBlob(function (blob){
-              var file = new File([blob], 'cropped.png')
-              data.file[0]
-          })
-          console.log(data)
-          data.submit();
-        });
-      },
 
       progressall: function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);

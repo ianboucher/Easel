@@ -32,12 +32,16 @@
           placeholder: "Add an optional discount % here"
         %br/
         = fields_for :image do |img|
-          = img.file_field :image, name: "images[]"
+          = img.file_field :image, name: "images[]", id: 'select_file'
 
-          %input#uploadart.btn.btn-primary{:type => "button", :value => "Upload"}
+          %input#uploadbutton.btn.btn-primary{:type => "button", :value => "Upload"}
+          %input#crop_btn.btn.btn-primary{:type => "button", :value => "Crop"}
 
           .div
-            %img#target 
+            %img#preview
+
+        %input#file_upload{:type => "file", :style => "display:none"}
+
 
         %br/
         = f.submit "Save", class: 'btn btn-success'

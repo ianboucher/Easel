@@ -57,9 +57,9 @@
   display: none;
 }
 
-#target {
+#preview {
   height: 500px;
-  width: 500px;
+  max-width: 100%;
 }
 
 .img {
