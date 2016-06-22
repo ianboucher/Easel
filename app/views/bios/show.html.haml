@@ -3,7 +3,7 @@
 %center
   .img-responsive
     - @bio.images.each do |img|
-      = image_tag(img.file.square)
+      = image_tag(img.file, class: 'preview-large')
 %h1= @bio.name
 %h3= @bio.description
 %p= @bio.statement

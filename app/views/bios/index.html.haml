@@ -3,7 +3,7 @@
 - @bios.each do |bio|
   .row
     .col-md-2
-      = image_tag bio.images.first.file.thumb
+      = image_tag bio.images.first.file, class: 'img-small'
     .media-heading
       .col-md-2
         %h4= link_to bio.name, bio_path(bio)

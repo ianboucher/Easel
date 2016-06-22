@@ -1,4 +1,7 @@
 class BiosController < ApplicationController
+
+  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
+
   def index
     @bios = Bio.all
   end
@@ -14,7 +17,7 @@ class BiosController < ApplicationController
   def create
 
     @bio = current_user.build_bio(bio_params) # syntax for has_one association
-    params[:images].each { |img| @bio.images.new(file: img, user_id: current_user.id) }
+    params[:image_url].each { |url| @bio.images.new(file: url, user_id: current_user.id) }
 
     if @bio.save!
       flash[:notice] = "Bio saved"
@@ -32,7 +35,7 @@ class BiosController < ApplicationController
   def update
     # binding.pry
     @bio = Bio.find(params[:id])
-    params[:images].each { |img| @bio.images.new(file: img, user_id: current_user.id) } if params.has_key?('images')
+    params[:image_url].each { |url| @bio.images.new(file: url, user_id: current_user.id) } if params.has_key?('image_url')
 
     if @bio.update(bio_params)
       flash[:notice] = "Bio updated"
@@ -47,5 +50,10 @@ class BiosController < ApplicationController
 
   def bio_params
     params.require(:bio).permit(:name, :description, :statement, :info, :user_id)
+  end
+
+  def set_s3_direct_post
+    @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}",
+      success_action_status: '201', acl: 'public-read')
   end
 end

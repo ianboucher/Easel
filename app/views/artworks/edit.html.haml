@@ -1,8 +1,22 @@
 %h1 Edit the listing for your Artwork
 
 .row
-  .col-md-8
-    = form_for @artwork, :html => {:multipart => true} do |f|
+  .col-md-12
+    = form_for @artwork, html: { class: 'directUpload',
+      data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url,
+      'host' => URI.parse(@s3_direct_post.url).host }, multipart: true } do |f|
+
+      %br/
+      = f.fields_for :image do |img|
+        = img.file_field :images, name: "images[]", id: 'select_file', class: 'filestyle',
+        data: { buttonText: 'Choose Image', icon: false }
+
+      %input#crop_btn.btn.btn-primary{:type => "button", :value => "Accept"}
+      %input#uploadbutton.btn.btn-primary{:type => "button", :value => "Upload"}
+      %input#file_upload{:type => "file", :style => "display:none"}
+      .div
+        %img#preview.center.empty-frame
+      %br/
 
       = form_group_tag(@artwork.errors[:title]) do
         = f.label :title
@@ -29,9 +43,5 @@
         = f.number_field :discount, class: 'form-control form-narrow',
           placeholder: "Add an optional discount % here"
         %br/
-        = f.fields_for :image do |img|
-          = img.label :images, class: 'btn btn-primary'
-          = img.file_field :images, multiple: true, name: "images[]", style: "display: none"
-        %br/
-        %br/
+
         = f.submit "Save", class: 'btn btn-success'

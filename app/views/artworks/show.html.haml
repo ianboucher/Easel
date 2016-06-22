@@ -1,8 +1,8 @@
 %br/
 %center
-  .img-responsive
-    - @artwork.images.each do |img|
-      = image_tag(img.file)
+  -# .preview-large
+  - @artwork.images.each do |img|
+    = image_tag(img.file, class: 'preview-large')
 %h1= @artwork.title
 %h3= @artwork.category
 %p= @artwork.description

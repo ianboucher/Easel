@@ -22,5 +22,6 @@
   - @dashboard.listed_artworks.each do |artwork|
     .row
       %br/
-      =link_to image_tag(artwork.images.first.file.thumb, class: 'image-responsive'), artwork_path(artwork)
+      =link_to image_tag(artwork.images.first.file,
+        class: 'image-responsive img-small'), artwork_path(artwork)
       =artwork.title
