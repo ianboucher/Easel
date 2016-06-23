@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 
   $('#select_file').on('change', function(e){
