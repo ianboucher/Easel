@@ -35,6 +35,24 @@ image_urls = [
 "//s3easel.s3-eu-west-1.amazonaws.com/uploads/ad17de77-07e0-4191-b61c-557ad6bc1d5b/test9.jpg",
 "//s3easel.s3-eu-west-1.amazonaws.com/uploads/f5dd6c77-397e-443b-8c70-241f95f33c8d/test10.jpg"]
 
+#Create artist bios
+
+users.each do |user|
+  Bio.create!(
+  user_id: user.id,
+  name: user.username,
+  description: Faker::Lorem.sentence(5),
+  statement: Faker::Lorem.sentence(100),
+  info: Faker::Lorem.sentence(50),
+  title_image: image_urls.sample,
+  image1: image_urls.sample,
+  image2: image_urls.sample,
+  image3: image_urls.sample
+  )
+end
+
+bios = Bio.all
+#Create artworks
 
 100.times do
   Artwork.create!(
@@ -43,15 +61,16 @@ image_urls = [
   category: Faker::Book.genre,
   description: Faker::Lorem.sentence(10),
   price: Faker::Number.number(3),
-  discount: nil
+  discount: nil,
+  title_image: image_urls.sample,
+  image1: image_urls.sample,
+  image2: image_urls.sample,
+  image3: image_urls.sample
   )
 end
 
 artworks = Artwork.all
 
-artworks.each do |artwork|
-  artwork.images.create!(file: image_urls.sample, user_id: artwork.user_id)
-end
-
 p "#{users.count} users created"
+p "#{bios.count} artist bios created"
 p "#{artworks.count} artworks created"

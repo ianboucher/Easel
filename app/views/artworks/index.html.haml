@@ -1,10 +1,9 @@
 %h1 Discover great Artwork on Easel
 %br/
-%center
-  - @artworks.in_groups_of(3, false).each do |group|
-    .row
-      - group.each do |artwork|
-        .col-md-4
-          = link_to image_tag(artwork.images.first.file, class: 'image-responsive img-small'),
-            artwork_path(artwork)
-        %br/
+.grid
+  %center
+    - @artworks.each do |artwork|
+      .col-md-4
+        = link_to image_tag(artwork.title_image, class: 'grid-item img-small'),
+          artwork_path(artwork)
+      %br/

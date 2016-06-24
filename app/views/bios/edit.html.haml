@@ -30,27 +30,27 @@
 
       .col-md-4
         = f.fields_for :image do |img|
-          = img.file_field :images, name: "images[]", id: 'select_file', class: 'filestyle',
+          = img.file_field :images, name: "images[]", id: 'select_file1', class: 'filestyle',
             data: { buttonText: 'Choose Image', icon: false, input: false }
 
-        %input#crop_btn.btn.btn-default{ :type => "button", :value => "Accept" }
-        %input#uploadbutton.btn.btn-default{ :type => "button", :value => "Upload" }
-        %input#file_upload{ :type => "file", :style => "display:none" }
+        %input#crop_btn1.btn.btn-default{ :type => "button", :value => "Accept" }
+        %input#uploadbutton1.btn.btn-default{ :type => "button", :value => "Upload" }
+        -# %input#file_upload{ :type => "file", :style => "display:none" }
         .div
           %br/
-          %img#preview.center.empty-frame-small
+          %img#preview1.center.empty-frame-small
         %br/
 
         = f.fields_for :image do |img|
-          = img.file_field :images, name: "images[]", id: 'select_file', class: 'filestyle',
+          = img.file_field :images, name: "images[]", id: 'select_file2', class: 'filestyle',
             data: { buttonText: 'Choose Image', icon: false, input: false }
 
-        %input#crop_btn.btn.btn-default{ :type => "button", :value => "Accept" }
-        %input#uploadbutton.btn.btn-default{ :type => "button", :value => "Upload" }
-        %input#file_upload{ :type => "file", :style => "display:none" }
+        %input#crop_btn2.btn.btn-default{ :type => "button", :value => "Accept" }
+        %input#uploadbutton2.btn.btn-default{ :type => "button", :value => "Upload" }
+        -# %input#file_upload{ :type => "file", :style => "display:none" }
         .div
           %br/
-          %img#preview.center.empty-frame-small
+          %img#preview2.center.empty-frame-small
         %br/
 
       .col-md-8

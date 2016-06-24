@@ -33,7 +33,7 @@ class BiosController < ApplicationController
   end
 
   def update
-    # binding.pry
+    binding.pry
     @bio = Bio.find(params[:id])
     params[:image_url].each { |url| @bio.images.new(file: url, user_id: current_user.id) } if params.has_key?('image_url')
 

@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 20160611203523) do
     t.text     "description"
     t.integer  "price"
     t.integer  "discount"
+    t.string   "title_image"
+    t.string   "image1"
+    t.string   "image2"
+    t.string   "image3"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -34,24 +38,16 @@ ActiveRecord::Schema.define(version: 20160611203523) do
     t.text     "description"
     t.text     "statement"
     t.text     "info"
+    t.string   "title_image"
+    t.string   "image1"
+    t.string   "image2"
+    t.string   "image3"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   add_index "bios", ["user_id"], name: "index_bios_on_user_id", using: :btree
-
-  create_table "images", force: :cascade do |t|
-    t.string   "file"
-    t.string   "imageable_type"
-    t.integer  "imageable_id"
-    t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
-  add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
   create_table "purchases", force: :cascade do |t|
     t.string   "charge_id"
@@ -94,7 +90,6 @@ ActiveRecord::Schema.define(version: 20160611203523) do
 
   add_foreign_key "artworks", "users"
   add_foreign_key "bios", "users"
-  add_foreign_key "images", "users"
   add_foreign_key "purchases", "artworks"
   add_foreign_key "purchases", "users"
 end

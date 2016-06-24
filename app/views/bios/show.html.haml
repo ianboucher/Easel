@@ -1,10 +1,23 @@
-%br/
-%center
-  .img-responsive
-    - @bio.images.each do |img|
-      = image_tag(img.file, class: 'preview-large')
-%h1= @bio.name
-%h3= @bio.description
-%p= @bio.statement
-%p= @bio.info
+.row
+  .col-md-12
+    %h1= @bio.name
+    %h3= @bio.description
+    %br/
+    .img-responsive
+      = image_tag(@bio.title_image, class: 'preview-large')
+    %br
+  .col-md-4
+    .empty-frame-small
+      = image_tag(@bio.image1, class: 'img-small')
+    %br/
+    .empty-frame-small
+      = image_tag(@bio.image2, class: 'img-small')
+    %br/
+  .col-md-8
+    %br/
+    .text_container
+      %p= @bio.statement
+    %br/
+    .text_container
+      %p= @bio.info
 = link_to "Edit your Bio", edit_bio_path, class: 'btn btn-primary'
