@@ -1,30 +1,50 @@
+$(document).ready(function(){
+  // init Isotope
+  var grid = document.querySelector('.grid');
+
+  var iso = new Isotope( grid, {
+    itemSelector: '.grid-item',
+    percentPosition: true,
+    masonry: {
+      columnWidth: '.grid-sizer',
+      gutter: 30
+    }
+  });
+
+  imagesLoaded( grid ).on( 'progress', function() {
+    // layout Isotope after each image loads
+    iso.layout();
+    // console.log('hello')
+  });
+});
+
 // $(document).ready(function() {
 //   var iso = new Isotope( '.grid', {
 //     itemSelector: '.grid-item',
-//     getSortData: {
-//       name: '.name',
-//       category: '[data-category]'
-//     },
+//     // getSortData: {
+//     //   name: '.name',
+//     //   category: '[data-category]'
+//     // },
 //     masonry: {
 //       columnWidth: 200
 //     }
 //   });
 // });
-$(document).ready(function() {
-  var elem = document.querySelector('.grid');
-  var pckry = new Packery( elem, {
-    // options
-    itemSelector: '.grid-item',
-    gutter: 10
-  });
-
-
-  // element argument can be a selector string
-  //   for an individual element
-  var pckry = new Packery( '.grid', {
-    // options
-  });
-});
+// $(document).ready(function() {
+//   var elem = document.querySelector('.grid');
+//   var pckry = new Packery( elem, {
+//     // options
+//     itemSelector: '.grid-item',
+//     gutter: 10
+//   });
+//
+//
+//   // element argument can be a selector string
+//   //   for an individual element
+//   var pckry = new Packery( '.grid', {
+//     // options
+//   });
+// });
 //
 //   $('#select_file').on('change', function(e){
 //     if (e.target.files && e.target.files[0]) {

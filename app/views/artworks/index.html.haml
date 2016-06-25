@@ -1,9 +1,8 @@
 %h1 Discover great Artwork on Easel
 %br/
 .grid
-  %center
+  .grid-sizer
     - @artworks.each do |artwork|
-      .col-md-4
-        = link_to image_tag(artwork.title_image, class: 'grid-item img-small'),
+      = link_to image_tag(artwork.title_image, class: 'grid-item'),
           artwork_path(artwork)
       %br/

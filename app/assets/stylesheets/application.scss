@@ -108,3 +108,18 @@
   max-width: 20em;
   float: left;
 }
+
+.grid-sizer,
+.grid-item {
+  float: left;
+  width: 22.5%;
+  margin-bottom: 30px;
+  background: #e6e5e4;
+  border: 1px solid #b6b5b4;
+}
+
+// /* fluid 5 columns */
+// .grid-sizer,
+// .grid-item { width: 20%; }
+// /* 2 columns */
+// .grid-item--width2 { width: 40%; }
