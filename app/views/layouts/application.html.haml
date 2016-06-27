@@ -6,11 +6,13 @@
       = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
       = javascript_include_tag 'application', 'data-turbolinks-track' => true
       = csrf_meta_tags
-      -# = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.js'
+      = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.1/isotope.pkgd.min.js'
+      = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/packery/2.1.1/packery.pkgd.min.js'
+      = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.0/imagesloaded.pkgd.min.js'
       = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.js'
       = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.css'
       = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/1.2.1/bootstrap-filestyle.js'
-      -# = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.css'
+      = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'
   %body
     .container
       .flash

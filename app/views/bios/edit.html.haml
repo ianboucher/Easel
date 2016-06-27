@@ -38,11 +38,15 @@
         %input#file_upload{ :type => "file", :style => "display:none" }
         .div
           %br/
-          %img#preview.center.empty-frame-small
+          %img#makeDroppable.center.empty-frame-small
+        %br/
+        .div
+          %br/
+          %img#preview1.empty-frame-small
         %br/
 
         = f.fields_for :image do |img|
-          = img.file_field :images, name: "images[]", id: 'select_file', class: 'filestyle',
+          = img.file_field :images, multiple: true, name: "images[]", id: 'select_file', class: 'filestyle',
             data: { buttonText: 'Choose Image', icon: false, input: false }
 
         %input#crop_btn.btn.btn-default{ :type => "button", :value => "Accept" }

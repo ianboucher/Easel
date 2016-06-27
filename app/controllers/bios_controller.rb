@@ -35,7 +35,16 @@ class BiosController < ApplicationController
   def update
     # binding.pry
     @bio = Bio.find(params[:id])
-    params[:image_url].each { |url| @bio.images.new(file: url, user_id: current_user.id) } if params.has_key?('image_url')
+    if params.has_key?('image_url')
+      # params[:image_url].each do |url|
+        @bio.images.new(
+        url: params[:image_url][0],
+        user_id: current_user.id,
+        posX: params[:image_posX][0].to_i,
+        posY: params[:image_posY][0].to_i)
+      # end
+    end
+
 
     if @bio.update(bio_params)
       flash[:notice] = "Bio updated"

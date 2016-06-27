@@ -1,8 +1,8 @@
 %br/
 %center
-  -# .preview-large
   - @artwork.images.each do |img|
-    = image_tag(img.file, class: 'preview-large')
+    = image_tag(img.url, class: 'preview-large', id: 'makeDraggable')
+.div#makeDroppable
 %h1= @artwork.title
 %h3= @artwork.category
 %p= @artwork.description

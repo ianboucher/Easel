@@ -1,8 +1,8 @@
 %br/
-%center
-  .img-responsive
-    - @bio.images.each do |img|
-      = image_tag(img.file, class: 'preview-large')
+
+.img-responsive
+  - @bio.images.each do |img|
+    = image_tag(img.url, class: 'preview-large', top: 0, left: 0)
 %h1= @bio.name
 %h3= @bio.description
 %p= @bio.statement

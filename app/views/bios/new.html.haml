@@ -1,51 +1,68 @@
-%h1 Create your new Bio page
-
 .row
   .col-md-12
     = form_for @bio, html: { class: 'directUpload',
       data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url,
       'host' => URI.parse(@s3_direct_post.url).host }, multipart: true } do |f|
 
-      %br/
-      = f.fields_for :image do |img|
-        = img.file_field :images, name: "images[]", id: 'select_file', class: 'filestyle',
-        data: { buttonText: 'Choose Image', icon: false }
-
-      %input#crop_btn.btn.btn-primary{:type => "button", :value => "Accept"}
-      %input#uploadbutton.btn.btn-primary{:type => "button", :value => "Upload"}
-      %input#file_upload{:type => "file", :style => "display:none"}
-      .div
-        %img#preview.center.empty-frame
-      %br/
-
-      .col-md-4
-
-        = f.fields_for :image do |img|
-          = img.file_field :images, name: "images[]", id: 'select_file', class: 'filestyle',
-          data: { buttonText: 'Choose Image', icon: false }
-
-        %input#crop_btn.btn.btn-primary{:type => "button", :value => "Accept"}
-        %input#uploadbutton.btn.btn-primary{:type => "button", :value => "Upload"}
-        %input#file_upload{:type => "file", :style => "display:none"}
-        .div
-          %img#preview.center.empty-frame-small
-
-      .col-md-8
+      .col-md-12
+        %h1 Create your Bio Page
+        %br/
         = form_group_tag(@bio.errors[:name]) do
           = f.label :name
-          = f.text_field :name, class: 'form-control', placeholder: "Enter your name here"
+          = f.text_field :name, class: 'form-control',
+            placeholder: "Enter your name here"
 
         = form_group_tag(@bio.errors[:description]) do
           = f.label :description
-          = f.text_field :description, class: 'form-control', placeholder: "Enter a 1-line description"
+          = f.text_field :description, class: 'form-control',
+            placeholder: "Enter a 1-line description"
+        %br/
+        = f.fields_for :image do |img|
+          = img.file_field :images, name: "images[]", id: 'select_file', class: 'filestyle',
+            data: { buttonText: 'Choose Image', icon: false, input: false }
 
+        %input#crop_btn.btn.btn-default{ :type => "button", :value => "Accept" }
+        %input#uploadbutton.btn.btn-default{ :type => "button", :value => "Upload" }
+        %input#file_upload{ :type => "file", :style => "display:none" }
+        .div
+          %img#preview.center.empty-frame
+        %br/
+
+      .col-md-4
+        = f.fields_for :image do |img|
+          = img.file_field :images, name: "images[]", id: 'select_file', class: 'filestyle',
+            data: { buttonText: 'Choose Image', icon: false, input: false }
+
+        %input#crop_btn.btn.btn-default{ :type => "button", :value => "Accept" }
+        %input#uploadbutton.btn.btn-default{ :type => "button", :value => "Upload" }
+        %input#file_upload{ :type => "file", :style => "display:none" }
+        .div
+          %br/
+          %img#preview.center.empty-frame-small
+        %br/
+
+        = f.fields_for :image do |img|
+          = img.file_field :images, name: "images[]", id: 'select_file', class: 'filestyle',
+            data: { buttonText: 'Choose Image', icon: false, input: false }
+
+        %input#crop_btn.btn.btn-default{ :type => "button", :value => "Accept" }
+        %input#uploadbutton.btn.btn-default{ :type => "button", :value => "Upload" }
+        %input#file_upload{ :type => "file", :style => "display:none" }
+        .div
+          %br/
+          %img#preview.center.empty-frame-small
+        %br/
+
+      .col-md-8
+        %br/
         = form_group_tag(@bio.errors[:statement]) do
           = f.label :statement
-          = f.text_area :statement, rows: 8, class: 'form-control', placeholder: "Enter your Artist's Statement here"
-
+          = f.text_area :statement, rows: 15, class: 'form-control',
+            placeholder: "Enter your Artist's Statement here"
+        %br
         = form_group_tag(@bio.errors[:info]) do
           = f.label :info
-          = f.text_area :info, rows: 12, class: 'form-control', placeholder: "Write anything you like here"
-          %br/
+          = f.text_area :info, rows: 15, class: 'form-control',
+            placeholder: "Write anything you like here"
 
-          = f.submit "Save", class: 'btn btn-success'
+        = f.submit "Save", class: 'btn btn-success'

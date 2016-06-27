@@ -42,9 +42,11 @@ ActiveRecord::Schema.define(version: 20160611203523) do
   add_index "bios", ["user_id"], name: "index_bios_on_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
-    t.string   "file"
+    t.string   "url"
     t.string   "imageable_type"
     t.integer  "imageable_id"
+    t.integer  "posX"
+    t.integer  "posY"
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
