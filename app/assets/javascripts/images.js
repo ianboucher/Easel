@@ -4,15 +4,15 @@ $(document).ready(function() {
     if (e.target.files && e.target.files[0]) {
       var reader = new FileReader();
       reader.onload = function(e) {
-          $('#preview').attr('src', e.target.result); // insert preview image
-          $('#preview').cropper() // initialize cropper on preview image
-        };
+        $('#preview-main').attr('src', e.target.result); // insert preview image
+        $('#preview-main').cropper() // initialize cropper on preview image
+      };
       reader.readAsDataURL(e.target.files[0]); // triggers code above
     };
   });
 
   $('#crop_btn').on('click', function(e, data){
-    $('#preview').cropper('getCroppedCanvas').toBlob(function (blob){
+    $('#preview-main').cropper('getCroppedCanvas').toBlob(function (blob){
       var fileInput = $('#select_file')
       var croppedFile = new File([blob], fileInput[0].files[0].name);
       $('#uploadbutton').on('click', function(){
@@ -23,40 +23,27 @@ $(document).ready(function() {
 
   $(function () {
     $("img").draggable({
-      snap: '#makeDroppable',
+      snap: '.makeDroppable',
       snapMode: 'inner',
       snapTolerance: 50,
       revert: 'invalid'
     })
-    $("#makeDroppable").droppable({
+    $(".makeDroppable").droppable({
       drop: handleDropEvent
     })
   })
 
   $(document.forms[0]).on('submit', function(){
-    var url = document.getElementById('preview1').src
-    var xPos = document.getElementById('preview1').x
-    var yPos = document.getElementById('preview1').y
-
-    var posY = $("<input />", { type:'hidden', name: 'image_posY[]', value: yPos })
-    var posX = $("<input />", { type:'hidden', name: 'image_posX[]', value: xPos })
-    var input = $("<input />", { type:'hidden', name: 'image_url[]', value: url })
+    var posY = $("<input />", { type:'hidden', name: 'image_posY[]', value: $('#preview1').y })
+    var posX = $("<input />", { type:'hidden', name: 'image_posX[]', value: $('#preview1').x })
+    var input = $("<input />", { type:'hidden', name: 'image_url[]', value: $('#preview1').src })
     $(document.forms[0]).append(input)
     $(document.forms[0]).append(posX)
     $(document.forms[0]).append(posY)
-    // console.log(input)
   })
 
   function handleDropEvent( event, ui ) {
-    // var offsetXPos = parseInt( ui.offset.left );
-    // var offsetYPos = parseInt( ui.offset.top );
-    // alert( "Drag stopped!\n\nOffset: (" + offsetXPos + ", " + offsetYPos + ")\n");
-    // var form = $($('#select_file').parents('form:first'));
-    // var posY = $("<input />", { type:'hidden', name: 'image_posY[]', value: offsetYPos })
-    // var posX = $("<input />", { type:'hidden', name: 'image_posX[]', value: offsetXPos })
-    // console.log($('#preview'))
-    // form.append(posY);
-    // form.append(posX);
+
   }
 
 
@@ -101,10 +88,32 @@ $(document).ready(function() {
         var key   = $(data.jqXHR.responseXML).find("Key").text();
         var url   = '//' + form.data('host') + '/' + key;
 
-        // create hidden field containing image URL, which can then be stored in model
-        // var input = $("<input />", { type:'hidden', name: 'image_url[]', value: url })
-        // form.append(input);
-        $('#preview1').attr('src', url );
+        // $(".makeDroppable").each(function() {
+        //   if(this.src === "") {
+        //     $(this).attr('src', url);
+        //     return false;
+        //   }
+        // });
+
+        $('#preview-main').attr('src', "")
+        $('#preview-main').cropper('destroy');
+
+        var image = document.createElement("img")
+
+        image.src = url
+        image.className = "empty-frame-small"
+        image.style.position='absolute'
+        image.style.top='40%'
+        image.style.left='45%'
+
+        $(image).draggable({
+          snap: '.makeDroppable',
+          snapMode: 'inner',
+          snapTolerance: 50,
+          revert: 'invalid'
+        })
+
+        document.body.appendChild(image)
       },
 
       fail: function(e, data) {

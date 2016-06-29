@@ -67,7 +67,7 @@
 .empty-frame-small {
   height: 300px;
   width: 300px;
-  // border: 1px 1px 1px 1px solid #eee;
+  border: 1px 1px 1px 1px solid #eee;
   border-radius: 2px;
 }
 
@@ -76,9 +76,6 @@
   max-width: 100%;
   border: 1px 1px 1px 1px solid #eee;
   border-radius: 2px;
-  // position: absolute;
-  // left: 65px;
-  // top: 940px;
 }
 
 .center {
@@ -127,12 +124,12 @@
 // /* 2 columns */
 // .grid-item--width2 { width: 40%; }
 
-#makeDraggable {
+.makeDraggable {
   width: 300px;
   height: 300px;
 }
 
-#makeDroppable {
+.makeDroppable {
   width: 300px;
   height: 300px;
   border: 1px solid #999;

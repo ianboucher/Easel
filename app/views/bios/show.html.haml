@@ -2,7 +2,8 @@
 
 .img-responsive
   - @bio.images.each do |img|
-    = image_tag(img.url, class: 'preview-large', top: 0, left: 0)
+    = image_tag(img.url, class: 'preview-large',
+      style: "position:absolute; top:#{img.posY}px; left: #{img.posX}px")
 %h1= @bio.name
 %h3= @bio.description
 %p= @bio.statement
